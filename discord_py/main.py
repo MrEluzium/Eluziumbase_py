@@ -80,7 +80,9 @@ async def set_prefix_error(ctx, error):
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send('pong')
+    t = await ctx.send(':ping_pong: calculation...')
+    ms = (t.created_at - ctx.message.created_at).total_seconds() * 1000
+    await t.edit(content=':ping_pong: Client Latency: {}ms'.format(int(ms)))
 
 
 if __name__ == '__main__':
