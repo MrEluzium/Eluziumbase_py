@@ -62,10 +62,12 @@ class DataBase:
         :return: bool
         """
         try:
+            if columns:
+                columns = f"({columns})"
             self.__cursor.execute(
-                f"""INSERT INTO {table}({columns}) VALUES({values});""")
+                f"""INSERT INTO {table}{columns} VALUES({values});""")
             self.__conn.commit()
-            log.info(f"[{self.__path}] Insert row in {table}({columns}) VALUES({values})")
+            log.info(f"[{self.__path}] Insert row in {table}{columns} VALUES({values})")
             return True
         except sqlite3.Error as e:
             log.error(e)
