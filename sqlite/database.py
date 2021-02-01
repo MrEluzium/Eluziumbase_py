@@ -163,7 +163,7 @@ class DataBase:
         :return: result
         """
         try:
-            result = self.__cursor.execute(f"SELECT {columns_to_read} FROM {table} ORDER BY {order_key} expression {mod};").fetchall()
+            result = self.__cursor.execute(f"SELECT {columns_to_read} FROM {table} ORDER BY {order_key} {mod};").fetchall()
             return result
         except sqlite3.Error as e:
             log.error(e)
